@@ -1,0 +1,19 @@
+
+
+body {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 40px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
