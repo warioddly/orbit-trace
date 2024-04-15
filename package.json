@@ -27,7 +27,9 @@
     "build": "webpack --config webpack.config.js"
   },
   "devDependencies": {
+    "closure-webpack-plugin": "^2.6.1",
     "copy-webpack-plugin": "^11.0.0",
+    "google-closure-compiler": "^20240317.0.0",
     "html-webpack-plugin": "^5.5.3",
     "microbundle": "^0.15.1",
     "ts-loader": "^9.5.1",
@@ -35,5 +37,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.9.0"
+  },
+  "dependencies": {
+    "terser-webpack-plugin": "^5.3.10"
   }
 }

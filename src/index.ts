@@ -1,4 +1,3 @@
-
 const PROJECT = 'orbit-trace';
 const CURSOR_CLASS_NAME = `${PROJECT}-cursor`;
 const CURSOR_BORDER_CLASS_NAME = `${CURSOR_CLASS_NAME}-border`;
@@ -33,6 +32,7 @@ const CSS_STYLE = `
 `;
 
 
+
 type Position = {
     x: number;
     y: number;
@@ -49,7 +49,7 @@ type Cursor = {
     border: CursorBorder;
 }
 
-class OrbitTrace {
+export class OrbitTrace {
 
     private cursor: Cursor;
 
@@ -88,7 +88,6 @@ class OrbitTrace {
 
         const cursorBorder = this.cursor.border.self;
 
-        console.log(document.querySelectorAll(`[${ON_HOVER_CLASS_NAME}]`));
         document.querySelectorAll(`[${ON_HOVER_CLASS_NAME}]`).forEach((item: Element) => {
 
             item.addEventListener("mouseover", (_) => {
@@ -150,5 +149,4 @@ class OrbitTrace {
 
 }
 
-
-module.exports = {OrbitTrace};
+module.exports = OrbitTrace
