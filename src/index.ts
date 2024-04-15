@@ -151,6 +151,4 @@ class OrbitTrace {
 }
 
 
-window.addEventListener('DOMContentLoaded', () => new OrbitTrace({}));
-
-
+module.exports = {OrbitTrace};
