@@ -49,7 +49,7 @@ type Cursor = {
     border: CursorBorder;
 }
 
-export class OrbitTrace {
+class OrbitTrace {
 
     private cursor: Cursor;
 

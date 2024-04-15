@@ -1,12 +1,39 @@
-var PROJECT = 'orbit-trace';
-var CURSOR_CLASS_NAME = "".concat(PROJECT, "-cursor");
-var CURSOR_BORDER_CLASS_NAME = "".concat(CURSOR_CLASS_NAME, "-border");
-var ON_HOVER_CLASS_NAME = "data-".concat(PROJECT);
-var CSS_STYLE = "\n    #".concat(CURSOR_CLASS_NAME, " {\n      display: block;\n      position: fixed;\n      top: -5px;\n      left: -5px;\n      width: 10px;\n      height: 10px;\n      background-color: white;\n      border-radius: 50%;\n      pointer-events: none;\n      z-index: 999;\n    }\n    #").concat(CURSOR_BORDER_CLASS_NAME, " {\n      --size: 50px;\n      position: fixed;\n      top: calc(var(--size) / -2);\n      left: calc(var(--size) / -2);\n      width: var(--size);\n      height: var(--size);\n      border-radius: 50%;\n      box-shadow: 0 0 0 1px white;\n      pointer-events: none;\n      transition: top 0.10s ease-out, left 0.10s ease-out, width 0.10s ease-out,\n      height 0.10s ease-out, background-color 0.10s ease-out;\n      z-index: 999;\n    }\n");
-var OrbitTrace = /** @class */ (function () {
-    function OrbitTrace(options) {
-        var cursor = document.body.appendChild(this.createDiv(CURSOR_CLASS_NAME));
-        var cursorBorder = document.body.appendChild(this.createDiv(CURSOR_BORDER_CLASS_NAME));
+const PROJECT = 'orbit-trace';
+const CURSOR_CLASS_NAME = `${PROJECT}-cursor`;
+const CURSOR_BORDER_CLASS_NAME = `${CURSOR_CLASS_NAME}-border`;
+const ON_HOVER_CLASS_NAME = `data-${PROJECT}`;
+const CSS_STYLE = `
+    #${CURSOR_CLASS_NAME} {
+      display: block;
+      position: fixed;
+      top: -5px;
+      left: -5px;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999;
+    }
+    #${CURSOR_BORDER_CLASS_NAME} {
+      --size: 50px;
+      position: fixed;
+      top: calc(var(--size) / -2);
+      left: calc(var(--size) / -2);
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px white;
+      pointer-events: none;
+      transition: top 0.10s ease-out, left 0.10s ease-out, width 0.10s ease-out,
+      height 0.10s ease-out, background-color 0.10s ease-out;
+      z-index: 999;
+    }
+`;
+class OrbitTrace {
+    constructor(options) {
+        const cursor = document.body.appendChild(this.createDiv(CURSOR_CLASS_NAME));
+        const cursorBorder = document.body.appendChild(this.createDiv(CURSOR_BORDER_CLASS_NAME));
         this.cursor = {
             self: cursor,
             position: { x: 0, y: 0 },
@@ -20,18 +47,18 @@ var OrbitTrace = /** @class */ (function () {
         this.onHover();
         this.loop();
     }
-    OrbitTrace.prototype.onMouseMove = function (event) {
+    onMouseMove(event) {
         this.cursor.position.x = event.clientX;
         this.cursor.position.y = event.clientY;
-        this.cursor.self.style.transform = "translate(".concat(event.clientX, "px, ").concat(event.clientY, "px)");
-    };
-    OrbitTrace.prototype.onHover = function () {
-        var cursorBorder = this.cursor.border.self;
-        console.log(document.querySelectorAll("[".concat(ON_HOVER_CLASS_NAME, "]")));
-        document.querySelectorAll("[".concat(ON_HOVER_CLASS_NAME, "]")).forEach(function (item) {
-            item.addEventListener("mouseover", function (_) {
+        this.cursor.self.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+    }
+    onHover() {
+        const cursorBorder = this.cursor.border.self;
+        console.log(document.querySelectorAll(`[${ON_HOVER_CLASS_NAME}]`));
+        document.querySelectorAll(`[${ON_HOVER_CLASS_NAME}]`).forEach((item) => {
+            item.addEventListener("mouseover", (_) => {
                 var _a;
-                var value = (_a = item.attributes.getNamedItem(ON_HOVER_CLASS_NAME)) === null || _a === void 0 ? void 0 : _a.value;
+                const value = (_a = item.attributes.getNamedItem(ON_HOVER_CLASS_NAME)) === null || _a === void 0 ? void 0 : _a.value;
                 if (value === "pointer") {
                     cursorBorder.style.backgroundColor = "rgba(255, 255, 255, .6)";
                     cursorBorder.style.setProperty("--size", "30px");
@@ -42,32 +69,33 @@ var OrbitTrace = /** @class */ (function () {
                     cursorBorder.style.setProperty("--size", "80px");
                 }
             });
-            item.addEventListener("mouseout", function (_) {
+            item.addEventListener("mouseout", (_) => {
                 cursorBorder.style.backgroundColor = "unset";
                 cursorBorder.style.mixBlendMode = "unset";
                 cursorBorder.style.setProperty("--size", "50px");
             });
         });
-    };
-    OrbitTrace.prototype.createDiv = function (id) {
-        var div = document.createElement('div');
+    }
+    createDiv(id) {
+        const div = document.createElement('div');
         div.id = id;
         return div;
-    };
-    OrbitTrace.prototype.createStyle = function () {
-        var style = document.createElement('style');
+    }
+    createStyle() {
+        const style = document.createElement('style');
         style.innerHTML = CSS_STYLE;
         document.head.appendChild(style);
-    };
-    OrbitTrace.prototype.loop = function () {
-        var easting = 9;
-        var cursorPosition = this.cursor.position;
-        var border = this.cursor.border;
-        var cursorBorderPosition = border.position;
+    }
+    loop() {
+        const easting = 9;
+        const cursorPosition = this.cursor.position;
+        const border = this.cursor.border;
+        const cursorBorderPosition = border.position;
         cursorBorderPosition.x += (cursorPosition.x - cursorBorderPosition.x) / easting;
         cursorBorderPosition.y += (cursorPosition.y - cursorBorderPosition.y) / easting;
-        border.self.style.transform = "translate(".concat(cursorBorderPosition.x, "px, ").concat(cursorBorderPosition.y, "px)");
+        border.self.style.transform = `translate(${cursorBorderPosition.x}px, ${cursorBorderPosition.y}px)`;
         requestAnimationFrame(this.loop.bind(this));
-    };
-    return OrbitTrace;
-}());
+    }
+}
+module.exports = OrbitTrace;
+//# sourceMappingURL=index.js.map
