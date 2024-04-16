@@ -16,7 +16,10 @@
   "homepage": "https://github.com/warioddly/orbit-trace#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/warioddly/orbit-trace.git"
+    "url": "https://github.com/warioddly/orbit-trace.git"
+  },
+  "publishConfig": {
+    "@warioddly:registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/warioddly/orbit-trace/issues"
