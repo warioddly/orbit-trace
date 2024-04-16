@@ -1,8 +1,8 @@
 {
-  "name": "orbit-trace",
+  "name": "@warioddly/orbit-trace",
   "version": "0.0.1",
   "description": "Orbit Trace",
-  "private": true,
+  "private": false,
   "keywords": [
     "orbit",
     "mouse",
