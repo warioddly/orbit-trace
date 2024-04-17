@@ -28,7 +28,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack serve --open --config webpack.config.dev.js",
     "ts-watch": "npx tsc -w",
-    "build": "rollup --config --bundleConfigAsCjs"
+    "build": "npx tsc && rollup --config --bundleConfigAsCjs"
   },
   "devDependencies": {
     "rollup": "^4.14.3",
