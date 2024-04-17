@@ -1,7 +1,5 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.config.js');
 
-module.exports = merge(common, {
+module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -10,4 +8,4 @@ module.exports = merge(common, {
     open: true,
     static: ['./'],
   },
-});
+};
