@@ -3,8 +3,6 @@ const CURSOR_CLASS_NAME = `${PROJECT}-cursor`;
 const CURSOR_BORDER_CLASS_NAME = `${CURSOR_CLASS_NAME}-border`;
 const ON_HOVER_CLASS_NAME = `data-${PROJECT}`;
 
-
-
 type Position = {
     x: number;
     y: number;
@@ -21,7 +19,6 @@ type Cursor = {
     border: CursorBorder;
 }
 
-
 type Options = {
     easing: number;
     border?: {
@@ -34,7 +31,6 @@ type Options = {
         visible: boolean;
     }
 }
-
 
 class OrbitTrace {
 
@@ -127,15 +123,10 @@ class OrbitTrace {
     private handleGesture() {
 
         const cursor = this.cursor.self;
-        const cursorBorder = this.cursor.border.self;
-
-        // document.addEventListener("copy", (_) => {
-        //     this.cursor.self.classList.add("copy");
-        // });
+        // const cursorBorder = this.cursor.border.self;
 
         document.addEventListener("selectionchange", (_) => {
-            console.log(window.getSelection()?.toString().length > 0 && !cursor.classList.contains("copy"));
-            if (window.getSelection()?.toString().length > 0 && !cursor.classList.contains("copy")) {
+            if ((window.getSelection()?.toString().length || 0) > 0 && !cursor.classList.contains("copy")) {
                 this.cursor.self.classList.add("copy");
             }
         });
@@ -158,13 +149,13 @@ class OrbitTrace {
 
     private createStyle() {
 
-        const border = this.options.border;
+        const border = this.options.border!;
         const style = document.createElement('style');
 
         style.innerHTML = `
         
             html {
-                cursor: ${this.options.cursor.visible ? "default" : "none"};
+                cursor: ${this.options.cursor!.visible ? "default" : "none"};
             }
             
             #${CURSOR_CLASS_NAME} {
@@ -237,7 +228,6 @@ class OrbitTrace {
               }
             }
             
-            
         `;
 
         document.head.appendChild(style);
@@ -263,4 +253,4 @@ class OrbitTrace {
 
 }
 
-module.exports = OrbitTrace
+export default OrbitTrace;

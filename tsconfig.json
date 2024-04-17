@@ -1,9 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "skipLibCheck": true,
-    "sourceMap": true
+    "target": "es2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "strict": true,
+    "esModuleInterop": false,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "src/dist",
   },
   "exclude": ["node_modules", "**/__tests__/*"]
 }
