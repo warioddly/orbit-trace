@@ -49,15 +49,16 @@
 
 <body>
 
-    <div>
-      <p><a href="https://github.com/warioddly" target="_blank" data-orbit-trace="pointer">WARIODDLY</a></p>
-      <p data-orbit-trace="pointer2">IØ</p>
-    </div>
+  <div>
+    <p><a href="https://github.com/warioddly" target="_blank" data-orbit-trace="pointer">WARIODDLY</a></p>
+    <p data-orbit-trace="pointer2">IØ</p>
+  </div>
 
-  <script src="dist/OrbitTrace.js"></script>
-  <script>
+  <script type="module">
+    import OrbitTrace from './dist/OrbitTrace.js';
     window.addEventListener('DOMContentLoaded', () => new OrbitTrace({}));
   </script>
+
 </body>
 
 </html>
